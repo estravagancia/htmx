@@ -1,4 +1,4 @@
-<h1>hola</h1>
+h1>hola</h1>
 <div id="app">resultados</div>
 <?php
 echo date('l jS \of F Y h:i:s A');
@@ -24,5 +24,4 @@ fetchPromise
   .catch((error) => {
     console.error(`Could not get products: ${error}`);
   });
-
 </script>

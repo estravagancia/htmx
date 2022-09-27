@@ -117,7 +117,9 @@ none: this option doesn’t append or prepend a response from an AJAX request. -
 
     <button
     hx-target="#pepe"
-    hx-get="/template/confirmed">Carga el contenido de /template/confirmed debajo</button>
+    hx-get="/template/confirmed"
+    hx-vals='{"myVal": "My Value"}'
+    >Carga el contenido de /template/confirmed debajo</button>
 <div id="pepe"></div>
     <script src="https://unpkg.com/htmx.org@1.7.0"></script>
   </body>
