@@ -1,4 +1,4 @@
-<h1>hola</h1>
+<h1>datos obtenidos a partir de echo PHP y de Promise con JS</h1>
 <div id="app">resultados</div>
 <?php
 echo date('l jS \of F Y h:i:s A');

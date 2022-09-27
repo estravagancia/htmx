@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <title>htmx</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <style>
-            .jokes {
-                padding: 1rem;
-                background-color: gainsboro;
-            }
-            </style>
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <title>htmx</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .jokes {
+        padding: 1rem;
+        background-color: gainsboro;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
   <body>
     <header><h1>HTMX</h1></header>
@@ -106,7 +106,7 @@ none: this option doesn’t append or prepend a response from an AJAX request. -
 
       <button
         hx-trigger="confirmed"
-         _="on click
+        _="on click
              call Swal.fire({title: 'Confirm', text:'Do you want to continue?'})
              if result.isConfirmed trigger confirmed"
       >
@@ -114,41 +114,21 @@ none: this option doesn’t append or prepend a response from an AJAX request. -
       </button>
     </main>
 
-
+    <div id="salida"></div>
     <button
-    hx-target="#pepe"
-    hx-get="/template/confirmed.php"
-    hx-trigger="click once"
-    placeholder="Searching..."
-    >Carga el contenido de /template/confirmed.php debajo</button>
-<div id="pepe"></div>
+      hx-target="#salida"
+      hx-get="/template/confirmed.php"
+      hx-trigger="click once"
+      placeholder="Searching..."
+    >
+      Carga el contenido de /template/confirmed.php arriba
+    </button>
 
-
-
-
-
-
-
-<div hx-confirm="Are you sure?">
-  <button hx-delete="/account">
-      Delete My Account
-  </button>
-  <button hx-put="/account">
-      Update My Account
-  </button>
-  <button hx-confirm="unset" hx-get="/">
-      Cancel
-  </button>
-</div>
-
-
-
-
-
-
-
-
-
+    <div hx-confirm="Are you sure?">
+      <button hx-delete="/account">Delete My Account</button>
+      <button hx-put="/account">Update My Account</button>
+      <button hx-confirm="unset" hx-get="/">Cancel</button>
+    </div>
 
     <script src="https://unpkg.com/htmx.org@1.7.0"></script>
   </body>
