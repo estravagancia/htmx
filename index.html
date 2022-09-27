@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <title>htmx</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            .jokes {
+                padding: 1rem;
+                background-color: gainsboro;
+            }
+            </style>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body>
+    <header><h1>HTMX</h1></header>
+    <main>
+      <h2>Eventos</h2>
+      <h3>Click</h3>
+      <p>Cada vez que se hace click, se carga un chiste</p>
+      <p>Evento por defecto, no hace falta declararlo</p>
+      <div
+        class="jokes"
+        hx-get="https://v2.jokeapi.dev/joke/Any?format=txt&safe-mode"
+      >
+        Load Jokes
+      </div>
+
+      <h3>Click</h3>
+      <p>Cada vez que se hace click, se carga un chiste</p>
+      <code>hx-trigger="click"</code>
+      <div
+        class="jokes"
+        hx-get="https://v2.jokeapi.dev/joke/Any?format=txt&safe-mode&lang=es"
+        hx-trigger="click"
+      >
+        Cargar chistes
+      </div>
+      <h3>Al pasar el ratón por encima una única vez</h3>
+      <p>Unicamente se carga un chiste al pasar el ratón por encima</p>
+      <code>hx-trigger="mouseenter once"</code>
+      <div
+        class="jokes"
+        hx-get="https://v2.jokeapi.dev/joke/Any?format=txt&safe-mode&lang=es"
+        hx-trigger="mouseenter once"
+      >
+        Cargar chistes
+      </div>
+      <h3>Auto cada 3 segundos</h3>
+      <p>Cada 3 segundos se muestra un chiste de forma automática</p>
+      <code>hx-trigger="every 3s"</code>
+      <div
+        class="jokes"
+        hx-get="https://v2.jokeapi.dev/joke/Any?format=txt&safe-mode&lang=es"
+        hx-trigger="every 3s"
+      >
+        Cargar chistes
+      </div>
+      <h3>Haciendo uso de indicadores</h3>
+      <p>Muestra la imagen mientras se resuleve la petición</p>
+      <img src="/8THYvPQ.gif" />
+      <code>class="htmx-indicator"</code>
+      <div
+        class="jokes"
+        hx-get="https://v2.jokeapi.dev/joke/Any?format=txt&safe-mode&lang=es"
+        hx-trigger="click"
+      >
+        <button>Cargar chistes</button>
+
+        <img class="htmx-indicator" src="/8THYvPQ.gif" />
+      </div>
+      <h3>Estableciendo objetivos</h3>
+      <p>
+        Se establece en que elemento se va a visualizar el resultado de la
+        petición
+      </p>
+      <code>hx-target="#result"</code>
+      <button
+        class="btn"
+        hx-get="https://v2.jokeapi.dev/joke/Any?format=txt&safe-mode&lang=es"
+        hx-target="#result"
+      >
+        Cargar chistes
+      </button>
+      <div class="jokes" id="result"></div>
+
+      <!-- Like the hx-target in the previous section, HTMX offers a different way to determine how to load the response returned by Ajax within the Dom. You can do so by setting the ‘hx-swap’ attribute with any of the values listed below:
+
+innerHTML: This is the default value; it inserts the content into the target element sending the request. outerHTML: It replaces the entire target element with the returned content.
+afterbegin: It prepends the response before the first child inside the target element.
+beforebegin: prepends the response as a parent element of the actual element triggering the request.
+beforeend: It appends the response after the last child of the element sending the request.
+afterend: like the beforeend, this appends response after the element sending request.
+none: this option doesn’t append or prepend a response from an AJAX request. -->
+      <h3>Combinación de teclas y ratón</h3>
+      <p>Al hacer CTRL + Click se carga un chiste</p>
+      <code>hx-trigger="click[ctrlKey]"</code>
+      <div
+        class="jokes"
+        hx-get="https://v2.jokeapi.dev/joke/Any?format=txt&safe-mode&lang=es"
+        hx-trigger="click[ctrlKey]"
+      >
+        Control Click Me
+      </div>
+
+      <button
+        hx-trigger="confirmed"
+         _="on click
+             call Swal.fire({title: 'Confirm', text:'Do you want to continue?'})
+             if result.isConfirmed trigger confirmed"
+      >
+        Click Me
+      </button>
+    </main>
+
+
+    <button
+    hx-target="#pepe"
+    hx-get="/template/confirmed.php">Carga el contenido de /template/confirmed.php debajo</button>
+<div id="pepe"></div>
+    <script src="https://unpkg.com/htmx.org@1.7.0"></script>
+  </body>
+</html>
