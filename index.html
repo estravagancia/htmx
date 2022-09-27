@@ -117,8 +117,39 @@ none: this option doesn’t append or prepend a response from an AJAX request. -
 
     <button
     hx-target="#pepe"
-    hx-get="/template/confirmed.php">Carga el contenido de /template/confirmed.php debajo</button>
+    hx-get="/template/confirmed.php"
+    hx-trigger="click once"
+    placeholder="Searching..."
+    >Carga el contenido de /template/confirmed.php debajo</button>
 <div id="pepe"></div>
+
+
+
+
+
+
+
+<div hx-confirm="Are you sure?">
+  <button hx-delete="/account">
+      Delete My Account
+  </button>
+  <button hx-put="/account">
+      Update My Account
+  </button>
+  <button hx-confirm="unset" hx-get="/">
+      Cancel
+  </button>
+</div>
+
+
+
+
+
+
+
+
+
+
     <script src="https://unpkg.com/htmx.org@1.7.0"></script>
   </body>
 </html>
