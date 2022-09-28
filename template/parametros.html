@@ -1,0 +1,37 @@
+<script>
+  function waitForURLParams(timeout) {
+    const check = (resolve) => {
+      if (window.location.search.length > 0) {
+        console.log(location.search.length);
+        resolve();
+      } else {
+        console.log(window.location.search.length);
+        setTimeout((_) => check(resolve), timeout);
+      }
+    };
+    return new Promise(check);
+  }
+  async function checkURLParams(timeout) {
+    await waitForURLParams(timeout);
+    console.log("dos");
+    return true;
+  }
+
+  checkURLParams(2000);
+
+  // const params =
+  // new Proxy(
+  //     new URLSearchParams(window.location.search),
+  //     {
+  //         get: (searchParams, prop) => searchParams.get(prop),
+  //     }
+  // );
+
+  //   console.log(params);
+
+  //   // Get the value of "llave" in eg "https://example.com/?llave=valor"
+
+  //   const value = params.llave;
+
+  //   console.log(value); // "valor"
+</script>

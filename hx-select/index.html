@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hx-select</title>
+</head>
+<body>
+    obtiene lo que tenga como id/clase en el destino, independientemente del orden en el que se encuentre: puede haber algo con una clase luego algo con id y de nuevo algo con clase
+    <div id="result">result</div>
+
+    <div>
+        <button hx-get="info.html" hx-select="#info-details" hx-swap="outerHTML" hx-target="#result">
+            Get Info -> "#info-details"
+        </button>
+
+        <button hx-get="info.html" hx-select=".otra-capa" hx-swap="outerHTML">
+            Get Info -> ".otra capa" (hay un par de ellas)
+        </button>
+    </div>
+
+
+    <script src="https://unpkg.com/htmx.org@1.8.0"></script>
+
+    <script>
+
+    </script>
+</body>
+</html>
