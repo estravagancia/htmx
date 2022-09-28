@@ -1,4 +1,3 @@
-h1>hola</h1>
 <div id="app">resultados</div>
 <?php
 echo date('l jS \of F Y h:i:s A');
@@ -18,7 +17,7 @@ fetchPromise
     return response.json();
   })
   .then((data) => {
-    console.log(data[0].name);
+    // console.log(data[0].name);
     app.innerHTML = data[0].name;
   })
   .catch((error) => {

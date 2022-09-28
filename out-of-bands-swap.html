@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="message">mensajes</div>
+    <div id="salida">salida</div>
+    <button
+    hx-get="/template/oobs.html"
+    hx-target="#salida"
+    >
+    carga el contenido en salida, pero resulta que oobs tiene un Out Of Bands Swap establecido en true, en una capa con el mismo id que la de mensajes, por lo tanto su destino será ese  hx-swap-oob="true">
+    </button>
+    <script src="https://unpkg.com/htmx.org@1.7.0"></script>
+</body>
+</html>
