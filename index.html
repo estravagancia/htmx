@@ -142,7 +142,6 @@ Cargar chistes 2
         hx-get="https://v2.jokeapi.dev/joke/Any?format=txt&safe-mode&lang=es"
         hx-trigger="every 30s"
       >      </div>
-
     <script src="https://unpkg.com/htmx.org@1.7.0"></script>
     <script>document.body.addEventListener('htmx:configRequest', function(evt) {
 
@@ -174,8 +173,6 @@ detail.verb - the HTTP verb in use
 
       console.log(evt.detail.parameters['author']);
       console.log(evt.detail.parameters.author);
-
-
   });</script>
 
 <script>document.body.addEventListener('htmx:afterRequest', function(evt) {
