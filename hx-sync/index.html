@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>async</title>
+  </head>
+  <body>
+    hx-sync="closest form:abort" en los input
+    <div id="search-results0">resultados</div>
+    <form hx-post="/form/article.php"
+     hx-target="#search-results0"
+     >
+      <input
+        id="name"
+        name="name"
+        type="text"
+        hx-post="/form/validate.php"
+        hx-trigger="change"
+        hx-sync="closest form:abort"
+        placeholder="Name"
+      />
+      <br />
+      <input
+        id="mail"
+        name="mail"
+        type="email"
+        hx-post="/form/validate.php"
+        hx-trigger="change"
+        hx-sync="closest form:abort"
+        placeholder="e-mail"
+      />
+      <br />
+      <button type="submit">Submit</button>
+    </form>
+
+    <hr />
+    Cancel Request en el button
+    <div id="search-results1">resultados</div>
+    <button id="request-button" hx-post="/form/article.php" hx-target="#search-results1" hx-trigger="click delay:2000ms"
+    >
+      Issue Request
+    </button>
+    <button onclick="htmx.trigger('#request-button', 'htmx:abort')">
+      Cancel Request
+    </button>
+    <hr />
+    hx-sync="this:replace" en el form. Esto cancelará cualquier solicitud de
+    validación en curso y emitirá solo la solicitud hx-post del formulario
+    <div id="search-results2">resultados</div>
+    <form hx-post="/form/article.php" hx-sync="this:replace"
+     hx-target="#search-results2"
+     >
+      <input
+        id="name"
+        name="name"
+        type="text"
+        hx-post="/form/validate.php"
+        hx-trigger="change"
+        placeholder="Name"
+      />
+      <br />
+      <input
+        id="mail"
+        name="mail"
+        type="email"
+        hx-post="/form/validate.php"
+        hx-trigger="change"
+        hx-sync="closest form:abort"
+        placeholder="e-mail"
+      />
+      <br />
+      <button type="submit">Submit</button>
+    </form>
+    <hr />
+    abortar la solicitud de envío y priorizar cualquier solicitud de validación existente
+    <div id="search-results3">resultados</div>
+    <form hx-post="/form/article.php" hx-sync="this:abort"
+     hx-target="#search-results3"
+     >
+      <input
+        id="name"
+        name="name"
+        type="text"
+        hx-post="/form/validate.php"
+        hx-trigger="change"
+        placeholder="Name"
+      />
+      <br />
+      <input
+        id="mail"
+        name="mail"
+        type="email"
+        hx-post="/form/validate.php"
+        hx-trigger="change"
+        hx-sync="closest form:abort"
+        placeholder="e-mail"
+      />
+      <br />
+      <button type="submit">Submit</button>
+    </form>
+    <hr />
+    Este ejemplo cancelará cualquier solicitud en tránsito y usará solo la última solicitud.
+    <div id="search-results4">resultados</div>
+    <input type="search" hx-get="/form/article.php" name="search"· hx-trigger="keyup changed
+    delay:500ms, search" hx-target="#search-results4" hx-sync="this:replace" >
+    
+    
+    <script src="https://unpkg.com/htmx.org@1.8.0"></script>
+  </body>
+</html>

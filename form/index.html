@@ -7,27 +7,38 @@
     <title>async</title>
   </head>
   <body>
-    <form hx-post="/article">
+    <form hx-post="article.php">
       <input
-        id="title"
-        name="title"
+        id="name"
+        name="name"
         type="text"
-        hx-post="/validate"
+        hx-post="validate.php"
         hx-trigger="change"
         hx-sync="closest form:abort"
       />
+
+      <br>
+      <input
+        id="mail"
+        name="mail"
+        type="email"
+        hx-post="validate.php"
+        hx-trigger="change"
+        hx-sync="closest form:abort"
+      />
+
       <button type="submit">Submit</button>
     </form>
-
+<hr>
     <form
       hx-encoding="multipart/form-data"
-      hx-post="/registration"
+      hx-post="registration.php"
       _="on htmx:xhr:progress(loaded, total) set #progress.value to (loaded/total)*100"
     >
       <input type="file" name="userFile" />
       <button>Upload File</button>
     </form>
 
-    <script src="https://unpkg.com/htmx.org@1.7.0"></script>
+    <script src="https://unpkg.com/htmx.org@1.8.0"></script>
   </body>
 </html>
