@@ -5,13 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>async</title>
+    <style>
+      .htmx-indicator {
+        display: none;
+      }
+      .htmx-request .htmx-indicator {
+        display: inline;
+      }
+
+      .htmx-request.my-indicator {
+        display: inline;
+      }
+    </style>
   </head>
   <body>
     hx-sync="closest form:abort" en los input
     <div id="search-results0">resultados</div>
-    <form hx-post="/form/article.php"
-     hx-target="#search-results0"
-     >
+    <form hx-post="/form/article.php" hx-target="#search-results0">
       <input
         id="name"
         name="name"
@@ -36,20 +46,30 @@
     </form>
 
     <hr />
-    Cancel Request en el button [se encarga de solicitar una página que tiene que sumar 1 hasta llegar a 1000000000]
+    Cancel Request en el button [se encarga de solicitar una página que tiene
+    que sumar 1 hasta llegar a 1000000000]
     <div id="search-results1">calcular</div>
 
-    <button id="request-button" hx-post="task.php" hx-target="#search-results1">Issue Request
-      <img class="htmx-indicator" src="animation.gif" style="max-height:13px" />
-    </button>    <button onclick="htmx.trigger('#request-button', 'htmx:abort')">Cancel Request</button>
+    <button id="request-button" hx-post="task.php" hx-target="#search-results1">
+      Issue Request
+      <img
+        class="htmx-indicator"
+        src="animation.gif"
+      />
+    </button>
+    <button onclick="htmx.trigger('#request-button', 'htmx:abort')">
+      Cancel Request
+    </button>
 
     <hr />
     hx-sync="this:replace" en el form. Esto cancelará cualquier solicitud de
     validación en curso y emitirá solo la solicitud hx-post del formulario
     <div id="search-results2">resultados</div>
-    <form hx-post="/form/article.php" hx-sync="this:replace"
-     hx-target="#search-results2"
-     >
+    <form
+      hx-post="/form/article.php"
+      hx-sync="this:replace"
+      hx-target="#search-results2"
+    >
       <input
         id="name"
         name="name"
@@ -72,11 +92,14 @@
       <button type="submit">Submit</button>
     </form>
     <hr />
-    abortar la solicitud de envío y priorizar cualquier solicitud de validación existente
+    abortar la solicitud de envío y priorizar cualquier solicitud de validación
+    existente
     <div id="search-results3">resultados</div>
-    <form hx-post="/form/article.php" hx-sync="this:abort"
-     hx-target="#search-results3"
-     >
+    <form
+      hx-post="/form/article.php"
+      hx-sync="this:abort"
+      hx-target="#search-results3"
+    >
       <input
         id="name"
         name="name"
@@ -99,12 +122,20 @@
       <button type="submit">Submit</button>
     </form>
     <hr />
-    Este ejemplo cancelará cualquier solicitud en tránsito y usará solo la última solicitud.
+    Este ejemplo cancelará cualquier solicitud en tránsito y usará solo la
+    última solicitud.
     <div id="search-results4">resultados</div>
-    <input type="search" hx-get="/form/article.php" name="search"· hx-trigger="keyup changed
-    delay:500ms, search" hx-target="#search-results4" hx-sync="this:replace" >
-    
-    
+    <input
+      type="search"
+      hx-get="/form/article.php"
+      name="search"
+      ·
+      hx-trigger="keyup changed
+    delay:500ms, search"
+      hx-target="#search-results4"
+      hx-sync="this:replace"
+    />
+
     <script src="https://unpkg.com/htmx.org@1.8.0"></script>
   </body>
 </html>
