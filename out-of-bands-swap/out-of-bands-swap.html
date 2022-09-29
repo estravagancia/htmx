@@ -10,10 +10,10 @@
     <div id="message">mensajes</div>
     <div id="salida">salida</div>
     <button
-    hx-get="/template/oobs.html"
+    hx-get="oobs.html"
     hx-target="#salida"
     >
-    carga el contenido en salida, pero resulta que oobs tiene un Out Of Bands Swap establecido en true, en una capa con el mismo id que la de mensajes, por lo tanto su destino será ese  hx-swap-oob="true">
+    carga el contenido en salida, pero resulta que oobs tiene un Out Of Bands Swap establecido en true, en una capa con el mismo id que la de mensajes, por lo tanto su destino será ese hx-swap-oob="true">
     </button>
     <script src="https://unpkg.com/htmx.org@1.7.0"></script>
 </body>
