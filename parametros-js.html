@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>parametros JS</title>
+</head>
+<body>
+    <div id="salida">salida</div>
+    <div 
+    hx-get="/template/parametros.html" 
+    hx-vals='js:{llave: "valor"}'
+    hx-params="*"
+    hx-target="#salida"
+    hx-trigger="click delay:1s"
+    >Get Some HTML, Including a Dynamic Value from Javascript in the Request</div>
+
+
+    <hr>
+
+
+    <div hx-get="/template/" hx-trigger="keyup" hx-vals='js:{lastKey: event.key}'
+    hx-params="*"
+    >
+        <input type="text" />
+      </div>
+    <script src="https://unpkg.com/htmx.org@1.7.0"></script>
+</body>
+</html>

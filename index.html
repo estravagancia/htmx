@@ -15,7 +15,7 @@
   </head>
   <body>
     <header><h1>HTMX</h1></header>
-    <main>
+    <!-- <main>
       <h2>Eventos</h2>
       <h3>Click</h3>
       <p>Cada vez que se hace click, se carga un chiste</p>
@@ -47,16 +47,7 @@
       >
         Cargar chistes
       </div>
-      <h3>Auto cada 3 segundos</h3>
-      <p>Cada 3 segundos se muestra un chiste de forma automática</p>
-      <code>hx-trigger="every 3s"</code>
-      <div
-        class="jokes"
-        hx-get="https://v2.jokeapi.dev/joke/Any?format=txt&safe-mode&lang=es"
-        hx-trigger="every 3s"
-      >
-        Cargar chistes
-      </div>
+      
       <h3>Haciendo uso de indicadores</h3>
       <p>Muestra la imagen mientras se resuleve la petición</p>
       <img src="/8THYvPQ.gif" />
@@ -83,10 +74,17 @@
       >
         Cargar chistes
       </button>
-      <div class="jokes" id="result"></div>
+      <div class="jokes" id="result"></div> -->
 
-     
-      <h3>Combinación de teclas y ratón</h3>
+      <!-- Like the hx-target in the previous section, HTMX offers a different way to determine how to load the response returned by Ajax within the Dom. You can do so by setting the ‘hx-swap’ attribute with any of the values listed below:
+
+innerHTML: This is the default value; it inserts the content into the target element sending the request. outerHTML: It replaces the entire target element with the returned content.
+afterbegin: It prepends the response before the first child inside the target element.
+beforebegin: prepends the response as a parent element of the actual element triggering the request.
+beforeend: It appends the response after the last child of the element sending the request.
+afterend: like the beforeend, this appends response after the element sending request.
+none: this option doesn’t append or prepend a response from an AJAX request. -->
+      <!-- <h3>Combinación de teclas y ratón</h3>
       <p>Al hacer CTRL + Click se carga un chiste</p>
       <code>hx-trigger="click[ctrlKey]"</code>
       <div
@@ -117,29 +115,88 @@
       </button>
     </main>
 
-    <div id="pepe"></div>
+    <div id="salida"></div>
     <button
-      hx-target="#pepe"
-      hx-get="/template/confirmed"
-      hx-vals='{"myVal": "My Value"}'
+      hx-target="#salida"
+      hx-get="/template/confirmed.php"
+      hx-trigger="click once"
+      placeholder="Searching..."
     >
-      Carga el contenido de /template/confirmed arriba - la respuesta js
-      funciona una vez, ya que no se ha cerrado la Promesa
+      Carga el contenido de /template/confirmed.php arriba
     </button>
 
-<div hx-trigger="revealed" hx-get="/parts/trigger-revealed.html">hola</div>
-<div hx-trigger="load" hx-get="/parts/trigger-revealed.html">adios</div>
-<div hx-trigger="intersect" hx-get="/parts/trigger-revealed.html">load</div>
+    <div hx-confirm="Are you sure?">
+      <button hx-delete="/account">Delete My Account</button>
+      <button hx-put="/account">Update My Account</button>
+      <button hx-confirm="unset" hx-get="/">Cancel</button>
+    </div>
 
+ -->
+
+<div class="jokes" id="result2"></div>
+<button
+  class="btn"
+  hx-get="https://v2.jokeapi.dev/joke/Any"
+  hx-target="#result2"
+  hx-vals='{"format":"txt","lang":"es"}'
+>
+Cargar chistes 2
+</button>
+
+
+<h3>Auto cada 30 segundos</h3>
+      <p>Cada 30 segundos se muestra un chiste de forma automática</p>
+      <code>hx-trigger="every 30s"</code>
+      <div
+        class="jokes"
+        hx-get="https://v2.jokeapi.dev/joke/Any?format=txt&safe-mode&lang=es"
+        hx-trigger="every 30s"
+      >      </div>
     <script src="https://unpkg.com/htmx.org@1.7.0"></script>
+    <script>document.body.addEventListener('htmx:configRequest', function(evt) {
 
- <!-- Like the hx-target in the previous section, HTMX offers a different way to determine how to load the response returned by Ajax within the Dom. You can do so by setting the ‘hx-swap’ attribute with any of the values listed below:
+evt.detail.parameters['author'] = 'estravagancia'; // add a new parameter into the mix
 
-innerHTML: This is the default value; it inserts the content into the target element sending the request. outerHTML: It replaces the entire target element with the returned content.
-afterbegin: It prepends the response before the first child inside the target element.
-beforebegin: prepends the response as a parent element of the actual element triggering the request.
-beforeend: It appends the response after the last child of the element sending the request.
-afterend: like the beforeend, this appends response after the element sending request.
-none: this option doesn’t append or prepend a response from an AJAX request. -->
+/*
+detail.parameters - the parameters that will be submitted in the request
+detail.unfilteredParameters - the parameters that were found before filtering by hx-select
+detail.headers - the request headers
+detail.elt - the element that triggered the request
+detail.target - the target of the request
+detail.verb - the HTTP verb in use
+*/
+
+      console.log('parameters: '+ evt.detail.parameters);
+      console.log(evt.detail.parameters);
+      console.log('unfilteredParameters: '+ evt.detail.unfilteredParameters);
+      console.log(evt.detail.unfilteredParameters);
+      console.log('headers: '+ evt.detail.headers);
+      console.log(evt.detail.headers);
+      console.log('elt: '+ evt.detail.elt);
+      console.log(evt.detail.elt);
+      console.log('target: '+ evt.detail.target);
+      console.log(evt.detail.target);
+      console.log('verb: '+ evt.detail.verb);
+      console.log(evt.detail.verb);
+      console.log('detail: '+ evt.detail);
+      console.log(evt.detail);
+
+      console.log(evt.detail.parameters['author']);
+      console.log(evt.detail.parameters.author);
+  });</script>
+
+<script>document.body.addEventListener('htmx:afterRequest', function(evt) {
+  console.log('successful: ');
+  console.log(evt.detail.successful);
+  
+  console.log('failed: ');
+  console.log(evt.detail.failed)
+
+  console.log('xhr: ');
+  console.log(evt.detail.xhr)
+
+  console.log('https://htmx.org/events/#htmx:afterRequest');
+
+});</script>
   </body>
 </html>
