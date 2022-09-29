@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <title>htmx</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <style>
-            .jokes {
-                padding: 1rem;
-                background-color: gainsboro;
-            }
-            </style>
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <title>htmx</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .jokes {
+        padding: 1rem;
+        background-color: gainsboro;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
   <body>
     <header><h1>HTMX</h1></header>
@@ -85,14 +85,7 @@
       </button>
       <div class="jokes" id="result"></div>
 
-      <!-- Like the hx-target in the previous section, HTMX offers a different way to determine how to load the response returned by Ajax within the Dom. You can do so by setting the ‘hx-swap’ attribute with any of the values listed below:
-
-innerHTML: This is the default value; it inserts the content into the target element sending the request. outerHTML: It replaces the entire target element with the returned content.
-afterbegin: It prepends the response before the first child inside the target element.
-beforebegin: prepends the response as a parent element of the actual element triggering the request.
-beforeend: It appends the response after the last child of the element sending the request.
-afterend: like the beforeend, this appends response after the element sending request.
-none: this option doesn’t append or prepend a response from an AJAX request. -->
+     
       <h3>Combinación de teclas y ratón</h3>
       <p>Al hacer CTRL + Click se carga un chiste</p>
       <code>hx-trigger="click[ctrlKey]"</code>
@@ -103,10 +96,20 @@ none: this option doesn’t append or prepend a response from an AJAX request. -
       >
         Control Click Me
       </div>
-
+      <hr />
+      <div id="salida"></div>
+      <button
+        hx-target="#salida"
+        hx-get="https://v2.jokeapi.dev/joke/Any"
+        hx-vals='{"format": "txt", "lang" : "es"}'
+      >
+        Enviamos como parámetros, el formato y el idioma. Carga el contenido en
+        salida
+      </button>
+      <hr />
       <button
         hx-trigger="confirmed"
-         _="on click
+        _="on click
              call Swal.fire({title: 'Confirm', text:'Do you want to continue?'})
              if result.isConfirmed trigger confirmed"
       >
@@ -114,13 +117,29 @@ none: this option doesn’t append or prepend a response from an AJAX request. -
       </button>
     </main>
 
-
+    <div id="pepe"></div>
     <button
-    hx-target="#pepe"
-    hx-get="/template/confirmed"
-    hx-vals='{"myVal": "My Value"}'
-    >Carga el contenido de /template/confirmed debajo</button>
-<div id="pepe"></div>
+      hx-target="#pepe"
+      hx-get="/template/confirmed"
+      hx-vals='{"myVal": "My Value"}'
+    >
+      Carga el contenido de /template/confirmed arriba - la respuesta js
+      funciona una vez, ya que no se ha cerrado la Promesa
+    </button>
+
+<div hx-trigger="revealed" hx-get="/parts/trigger-revealed.html">hola</div>
+<div hx-trigger="load" hx-get="/parts/trigger-revealed.html">adios</div>
+<div hx-trigger="intersect" hx-get="/parts/trigger-revealed.html">load</div>
+
     <script src="https://unpkg.com/htmx.org@1.7.0"></script>
+
+ <!-- Like the hx-target in the previous section, HTMX offers a different way to determine how to load the response returned by Ajax within the Dom. You can do so by setting the ‘hx-swap’ attribute with any of the values listed below:
+
+innerHTML: This is the default value; it inserts the content into the target element sending the request. outerHTML: It replaces the entire target element with the returned content.
+afterbegin: It prepends the response before the first child inside the target element.
+beforebegin: prepends the response as a parent element of the actual element triggering the request.
+beforeend: It appends the response after the last child of the element sending the request.
+afterend: like the beforeend, this appends response after the element sending request.
+none: this option doesn’t append or prepend a response from an AJAX request. -->
   </body>
 </html>

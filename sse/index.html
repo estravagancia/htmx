@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSE</title>
+</head>
+<body>
+    <h1>HTMX only</h1>
+    <div hx-ext="sse" sse-connect="sse.php" sse-swap="message" hx-target="#result"></div>
+    <div id="result">result</div>
+
+    <script src="https://unpkg.com/htmx.org@1.8.0"></script>
+    <script src="https://unpkg.com/htmx.org@1.8.0/dist/ext/sse.js"></script>
+
+    <script>
+    // if(typeof(EventSource) !== "undefined") {
+    //     console.log('Yes! Server-sent events support!');
+    //     console.log('https://www.w3schools.com/html/html5_serversentevents.asp');
+    //     // Some code.....
+    // } else {
+    //     console.log('Sorry! No server-sent events support..');
+    // }
+    </script>
+</body>
+</html>
