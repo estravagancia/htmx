@@ -6,7 +6,7 @@ if (isset($_REQUEST))
 		if($key ==='name'){
 			//if (!preg_match("/^[a-zA-Z-' ]*$/",$value)) {
 			//	echo "Sólo letras (sin acentos) y espacios en blanco permitidos";
-			if (!preg_match("/^(?=.{3,18}$)[a-zñA-ZÑ](\s?[a-zñA-ZÑ])*$/",$value)) {
+			if (!preg_match("/^(?=.{3,18}$)[a-zA-Z áéíóúÁÉÍÓÚñÑ]*$/",$value)) {
 				echo "Sólo letras y espacios en blanco permitidos entre 3 y 18 caracteres";
 				continue;
 			}
