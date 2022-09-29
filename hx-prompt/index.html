@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hx-prompt</title>
+</head>
+<body>
+<h1>Event - htmx:prompt</h1>
+<p>This event is triggered after a prompt has been shown to the user with the hx-prompt attribute. If this event is cancelled, the AJAX request will not occur.</p>
+<p>Details</p>
+<ul>
+    <li>detail.elt - the element that triggered the request
+    </li>
+    <li>detail.target - the target of the request
+    </li>
+    <li>detail.prompt - the user response to the prompt
+    </li>
+</ul>
+<div id="salida"></div>
+<button 
+hx-delete="/form/delete.php" 
+hx-prompt="Enter your account name to confirm deletion"
+hx-target="#salida"
+hx-vals='{"format": "txt", "lang" : "es"}'
+>
+    Delete My Account
+</button>
+<small>mirar la salida de consola, debería mostrar lo que hemos escrito</small>
+<script src="https://unpkg.com/htmx.org@1.8.0"></script>
+<script>
+document.body.addEventListener("htmx:prompt", function (evt) {
+    console.log(evt.detail.prompt);
+});
+</script>
+</body>
+</html>
