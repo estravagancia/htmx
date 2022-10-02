@@ -7,9 +7,9 @@ $counter = rand(1, 10);
 while (true) {
   // Every second, send a "ping" event.
 
-  echo "event: eventName\n";
+  echo "event: eventName\n"; // <----- nombre del evento llamado desde index-eventName.html
   $curDate = date(DATE_ISO8601);
-  echo 'data: {"time": "' . $curDate . '"}';
+  echo 'data: {"fecha": "' . $curDate . '"}';
   echo "\n\n";
 
   // Send a simple message at random intervals.
