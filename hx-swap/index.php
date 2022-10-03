@@ -70,7 +70,7 @@ Cargar lista
     class="btn"
     hx-get="/tasks/list.php"
     hx-target="#result-afterbegin"
-    hx-swap="afterbegin"
+    hx-swap="afterbegin show:#result-afterbegin:top"
 >
      Cargar lista
 </button> 
@@ -84,7 +84,7 @@ Cargar lista
     class="btn"
     hx-get="/tasks/list.php"
     hx-target="#result-beforebegin"
-    hx-swap="beforebegin"
+    hx-swap="beforebegin show:window:top"
 >
 Cargar lista
 </button>
@@ -97,7 +97,7 @@ Cargar lista
     class="btn"
     hx-get="/tasks/list.php"
     hx-target="#result-beforeend"
-    hx-swap="beforeend"
+    hx-swap="beforeend focus-scroll:true"
 >
 Cargar lista
 </button>
@@ -110,7 +110,7 @@ Cargar lista
     class="btn"
     hx-get="/tasks/list.php"
     hx-target="#result-afterend"
-    hx-swap="afterend"
+    hx-swap="afterend focus-scroll:false"
 >
 Cargar lista
 </button>
