@@ -1,5 +1,5 @@
 {# https://randomuser.me/api/ #}
-{# https://mustache.github.io/#demo #}
+
 <?php
 session_start();
 $_SESSION['token'] = md5(uniqid(mt_rand(), true));
@@ -8,15 +8,14 @@ $_SESSION['token'] = md5(uniqid(mt_rand(), true));
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>X-CSRFToken</title>
+    <title>randomuser API</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/htmx.org@1.8.0"></script>
     <script src="https://unpkg.com/htmx.org/dist/ext/client-side-templates.js"></script>
     <script src="https://unpkg.com/mustache@latest"></script>
-  </head>
-  <!-- <body hx-headers='{"X-CSRFToken": "< ?php echo $_SESSION['token'] ?>"}'> -->
-    <body>
+</head>
+<body>
 <div hx-ext="client-side-templates">
     <button
         type="button"
@@ -26,19 +25,22 @@ $_SESSION['token'] = md5(uniqid(mt_rand(), true));
         hx-target="#randomuserLi"
         hx-swap="innerHTML"
     >load
-</button>
+    </button>
+
+</div>
+<div id="randomuserLi"></div>
 
 <script id="randomuser" type="mustache">
     {{#results}}
-        {{gender}}
-        {{name.title}}
-        {{name.first}}
-        {{name.last}}
-        <img src="{{picture.large}}" title="from {{location.country}}" />
+        <p>
+            <small>{{name.title}}</small>
+            {{name.first}}
+            {{name.last}}
+        </p>
+        <img src="{{picture.large}}" alt="{{gender}}" title="from {{location.country}}" />
     {{/results}}
 </script>
-<ul id="randomuserLi"></ul>
-</div>
+
 
 
 <!--
@@ -94,5 +96,38 @@ $_SESSION['token'] = md5(uniqid(mt_rand(), true));
     }
 }
 -->
+<script>
+document.body.addEventListener('htmx:configRequest', function(evt) {
+  // try to remove x-hx-* headers because gist api complains about CORS
+  Object.keys(evt.detail.headers).forEach(function(key) {
+    delete evt.detail.headers[key];
+  });
+});
+// fetch('https://randomuser.me/api/')
+//   .then((response) => response.json())
+//   .then((data) => console.log(data));
+//   return response;
+
+/*
+!async function(){
+    let data = await fetch("https://randomuser.me/api/")
+        .then((response) => response.json())
+        .then(data => {
+            return data;
+        })
+        .catch(error => {
+            console.error(error);
+        });
+        console.log(data);
+    const imagen = `<img src="${data.results[0].picture.large}" alt=""/>`;
+    console.log(imagen);
+    const titulo = data.results[0].name.title;
+    const nombre = data.results[0].name.first;
+    const apellidos = data.results[0].name.last;
+    console.log(titulo + ' ' + nombre + ' '+ apellidos);
+    console.log('from '+ data.results[0].location.country);
+}();
+*/
+</script>
 </body>
 </html>
