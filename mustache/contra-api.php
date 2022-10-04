@@ -1,5 +1,5 @@
 {# https://randomuser.me/api/ #}
-
+{# https://mustache.github.io/#demo #}
 <?php
 session_start();
 $_SESSION['token'] = md5(uniqid(mt_rand(), true));
