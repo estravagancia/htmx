@@ -20,6 +20,7 @@ $_SESSION['token'] = md5(uniqid(mt_rand(), true));
 document.body.addEventListener('htmx:configRequest', function(evt) {
     evt.detail.parameters['auth_token'] = <?php echo $_SESSION['token'] ?>; // add a new parameter into the request
     evt.detail.headers['Authentication-Token'] = <?php echo $_SESSION['token'] ?>; // add a new header into the request
+    evt.detail.parameters["author"] = "estravagancia"; // add a new parameter into the mix
 });
 </script>
 </body>

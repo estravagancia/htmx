@@ -15,7 +15,7 @@
 
 
 <script>
-            var source = new EventSource("jhon.php");
+            var source = new EventSource("jsonly.php");
             source.onmessage = function(event) {
                 var details = JSON.parse(event.data);
                 document.getElementById("show_data").innerHTML += details['name'] + "<br>";
