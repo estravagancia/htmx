@@ -26,8 +26,11 @@ $_SESSION['token'] = md5(uniqid(mt_rand(), true));
         hx-target="#randomuserLi"
         hx-swap="innerHTML"
     >load
-</button>
+    </button>
+</div>
 
+<ul id="randomuserLi"></ul>
+      
 <script id="randomuser" type="mustache">
     {{#results}}
         {{gender}}
@@ -37,9 +40,6 @@ $_SESSION['token'] = md5(uniqid(mt_rand(), true));
         <img src="{{picture.large}}" title="from {{location.country}}" />
     {{/results}}
 </script>
-<ul id="randomuserLi"></ul>
-</div>
-
 
 <!--
 {"results":[
