@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hx-sync - closest form:drop</title>
+  </head>
+  <body>
+    <p><a href="https://htmx.org/attributes/hx-sync/" target="_blank" rel="noopener">https://htmx.org/attributes/hx-sync/</a></p>
+    <h1>Priorizando la validación sobre el envío</h1>
+    <p>Al realizar cambios en el input, este llama a un archivo - se supone que sería la validación, pero simplemente estamos llamando a un archivo que tarda un tiempo en realizar una tarea -  [se encarga de solicitar una página que tiene que sumar 1 hasta llegar a 1000000000]</p>
+    <p>En este ejemplo vamos a ver, que hasta que no se realiza la supuesta validación, el formulario NO se envía.</p>
+    <form hx-post="/tasks/request.php">
+      <input id="title" name="title" type="text" 
+        hx-post="task.php" 
+        hx-trigger="change"
+        hx-sync="closest form:drop"
+      >
+      <button type="submit">Submit</button>
+    </form>
+    <script src="https://unpkg.com/htmx.org@1.8.0"></script>
+  </body>
+</html>
