@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>async</title>
+    <style>
+      .htmx-indicator {
+        display: none;
+      }
+      .htmx-request .htmx-indicator {
+        display: inline;
+      }
+
+      .htmx-request.my-indicator {
+        display: inline;
+      }
+    </style>
+  </head>
+  <body>
+    <p><a href="https://htmx.org/attributes/hx-sync/" target="_blank" rel="noopener">https://htmx.org/attributes/hx-sync/</a></p>
+    <h1>Cancelando envío mediante evento</h1>
+    <p>Al pulsar el botón, se encarga de solicitar una página que tiene que sumar 1 hasta llegar a 1000000000. Si queremos abortar la petición, lo hacemos desde el otro botón que tiene un evento en el que indicamos sobre que elemento y que acción se va a desarrollar</p>
+    
+    <button id="request-button" hx-post="task.php" hx-target="#search-results1">
+      Iniciar petición
+      <img
+          class="htmx-indicator"
+          src="animation.gif"
+        />
+    </button>
+    <button onclick="htmx.trigger('#request-button', 'htmx:abort')">
+      Cancelar petición
+    </button>
+
+    <div id="search-results1">calcular</div>
+
+ 
+    <script src="https://unpkg.com/htmx.org@1.8.0"></script>
+  </body>
+</html>
