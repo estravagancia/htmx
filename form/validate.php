@@ -25,6 +25,13 @@ if (isset($_REQUEST))
 				return true;
 			};
 		};
+
+		if($key ==='website'){
+			if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$key)) {
+  			echo "Esta URL (".$value.") NO es válida." ;
+				return false;
+			}
+		};
 	};
 }
 ?>
